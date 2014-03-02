@@ -1,8 +1,8 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"os"
 	"strconv"
@@ -252,9 +252,12 @@ START:
 	numMoves := 0
 	fmt.Println("Press (w,a,s,d + ENTER) to move")
 	printBoard(Board, theBlock)
+	input := bufio.NewReader(os.Stdin)
 	for {
-		command := make([]byte, 1)
-		_, err := io.ReadAtLeast(os.Stdin, command, 1)
+		command, err := input.ReadByte()
+		if err != nil {
+			fmt.Println(err)
+		}
 		numMoves++
 		if err != nil {
 			fmt.Println("err")
