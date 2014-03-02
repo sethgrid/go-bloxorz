@@ -1,18 +1,24 @@
 package bloxorz
 
+/*
+This file composes the bloxorz struct and defines how it moves
+*/
+
 import (
 	"fmt"
 )
 
+// used to compose the Bloxor
 type Block struct {
 	PosX, PosY int
 }
 
+// a bloxor is two block cubes attached
 type Bloxor struct {
-	// a bloxor is two block cubes attached
 	A, B Block
 }
 
+// think z-axis; both blocks at the same x,y coordinate
 func (b *Bloxor) isStacked() bool {
 	if b.A.PosX == b.B.PosX && b.A.PosY == b.B.PosY {
 		return true
@@ -20,6 +26,7 @@ func (b *Bloxor) isStacked() bool {
 	return false
 }
 
+// parallel to y-axis
 func (b *Bloxor) isVertical() bool {
 	if b.A.PosX == b.B.PosX && b.A.PosY != b.B.PosY {
 		return true
@@ -27,12 +34,17 @@ func (b *Bloxor) isVertical() bool {
 	return false
 }
 
+// parallel to x-axis
 func (b *Bloxor) isHorizontal() bool {
 	if b.A.PosX != b.B.PosX && b.A.PosY == b.B.PosY {
 		return true
 	}
 	return false
 }
+
+/*
+Move functions behave differently depending on block state.
+*/
 
 func (b *Bloxor) MoveUp() {
 	if b.isStacked() {
@@ -50,6 +62,7 @@ func (b *Bloxor) MoveUp() {
 		b.A.PosY--
 		b.B.PosY--
 	} else {
+		// sanity check
 		fmt.Println("Error, blocks not stacked, vertical, nor horizontal.")
 	}
 }
@@ -70,6 +83,7 @@ func (b *Bloxor) MoveDown() {
 		b.A.PosY++
 		b.B.PosY++
 	} else {
+		// sanity check
 		fmt.Println("Error, blocks not stacked, vertical, nor horizontal.")
 	}
 }
@@ -90,6 +104,7 @@ func (b *Bloxor) MoveLeft() {
 		b.A.PosX--
 		b.B.PosX--
 	} else {
+		// sanity check
 		fmt.Println("Error, blocks not stacked, vertical, nor horizontal.")
 	}
 }
@@ -110,6 +125,7 @@ func (b *Bloxor) MoveRight() {
 		b.A.PosX++
 		b.B.PosX++
 	} else {
+		// sanity check
 		fmt.Println("Error, blocks not stacked, vertical, nor horizontal.")
 	}
 }

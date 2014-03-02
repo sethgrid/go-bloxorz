@@ -14,7 +14,7 @@ func main() {
 	// TODO: figure out how to have a solver
 START:
 	MapFile := "map1.txt"
-	Board, theBlock := bloxorz.ReadMap(MapFile)
+	Board, theBlock := bloxorz.ReadBoardFromFile(MapFile)
 	numMoves := 0
 	fmt.Println("Press (w,a,s,d + ENTER) to move")
 	bloxorz.PrintBoard(Board, theBlock)
