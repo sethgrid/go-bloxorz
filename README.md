@@ -9,4 +9,4 @@ The article set out to make a solver and that sounded fun. Before I actually rea
 ## To Play
 Clone the repo, go install bloxorz, and run main.go.
 
-Version: "0.1.0"
+VERSION: "0.1.0"
